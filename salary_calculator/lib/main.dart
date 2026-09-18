@@ -89,6 +89,20 @@ class _SalaryCalculatorHomeState extends State<SalaryCalculatorHome> with Single
     _animationController.forward();
   }
 
+  void _resetFields() {
+    _incomeController.clear();
+    _medicalController.clear();
+    _travelController.clear();
+    _residentialController.clear();
+    _taxController.clear();
+    setState(() {
+      _showResult = false;
+      _totalSalary = 0.0;
+      _taxAmount = 0.0;
+    });
+    _animationController.reverse();
+  }
+
   Widget _buildTextField(TextEditingController controller, String label, IconData icon) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -127,20 +141,43 @@ class _SalaryCalculatorHomeState extends State<SalaryCalculatorHome> with Single
             _buildTextField(_residentialController, 'Residential Allowance', Icons.home),
             _buildTextField(_taxController, 'Tax Deduction (%)', Icons.percent),
             const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: _calculateSalary,
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+            Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: ElevatedButton(
+                    onPressed: _calculateSalary,
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    child: const Text(
+                      'Calculate',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-              ),
-              child: const Text(
-                'Calculate Net Salary',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+                const SizedBox(width: 12),
+                Expanded(
+                  flex: 1,
+                  child: OutlinedButton.icon(
+                    onPressed: _resetFields,
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      side: BorderSide(color: Theme.of(context).colorScheme.outline),
+                    ),
+                    icon: const Icon(Icons.refresh),
+                    label: const Text('Reset'),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 32),
             if (_showResult)

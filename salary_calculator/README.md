@@ -6,6 +6,7 @@ A modern, animated Flutter application designed to calculate net monthly salary 
 
 - **Detailed Inputs**: Fields for Monthly Income, Medical Allowance, Travel Allowance, and Residential Allowance.
 - **Dynamic Tax Calculation**: Allows users to input a tax percentage to see the impact on their take-home pay.
+- **Reset Functionality**: A dedicated **Reset button** to clear all input fields and results instantly.
 - **Visual Breakdown**: Displays the **Tax Deduction** amount separately before showing the final **Net Monthly Salary**.
 - **Modern UI**: Built with Material 3 using a high-luminance (Amber/Yellow) color scheme for high visibility.
 - **Interactive Animations**: Results appear with smooth scale-in and fade-in animations using an elastic curve.
