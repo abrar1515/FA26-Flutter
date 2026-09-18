@@ -41,6 +41,7 @@ class _SalaryCalculatorHomeState extends State<SalaryCalculatorHome> with Single
   final TextEditingController _taxController = TextEditingController();
 
   double _totalSalary = 0.0;
+  double _taxAmount = 0.0;
   bool _showResult = false;
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
@@ -80,6 +81,7 @@ class _SalaryCalculatorHomeState extends State<SalaryCalculatorHome> with Single
     final double taxAmount = grossSalary * (taxPercent / 100);
 
     setState(() {
+      _taxAmount = taxAmount;
       _totalSalary = grossSalary - taxAmount;
       _showResult = true;
     });
@@ -157,12 +159,26 @@ class _SalaryCalculatorHomeState extends State<SalaryCalculatorHome> with Single
                       child: Column(
                         children: [
                           Text(
+                            'Tax Deduction',
+                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  color: Theme.of(context).colorScheme.error,
+                                ),
+                          ),
+                          Text(
+                            '-\$${_taxAmount.toStringAsFixed(2)}',
+                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                  color: Theme.of(context).colorScheme.error,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          const Divider(height: 32),
+                          Text(
                             'Net Monthly Salary',
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            '\$${_totalSalary.toStringAsFixed(2)}',
+                            '\$${(_totalSalary).toStringAsFixed(2)}',
                             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                                   color: Theme.of(context).colorScheme.primary,
                                   fontWeight: FontWeight.bold,
