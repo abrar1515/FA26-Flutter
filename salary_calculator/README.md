@@ -53,4 +53,5 @@ Follow these steps to get the app running on your machine:
 - **Animations**: Flutter `AnimationController`, `FadeTransition`, and `ScaleTransition`.
 
 ScreenShot
+<img width="1968" height="1310" alt="Screenshot 2026-09-18 154330" src="https://github.com/user-attachments/assets/fe2c7ba6-ec35-45bf-89aa-6d216e2c6d63" />
 
