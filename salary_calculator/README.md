@@ -51,3 +51,6 @@ Follow these steps to get the app running on your machine:
 - **Language**: Dart
 - **Design System**: Material 3 (with custom high-luminance theme)
 - **Animations**: Flutter `AnimationController`, `FadeTransition`, and `ScaleTransition`.
+
+ScreenShot
+
